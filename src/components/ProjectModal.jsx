@@ -91,14 +91,15 @@ export default function ProjectModal({ project, onClose }) {
           -webkit-backdrop-filter: blur(8px);
           animation: modalFadeIn 0.25s ease both;
           padding: 24px;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
 
         .modal-content {
           position: relative;
           width: 100%;
           max-width: 720px;
-          max-height: 90vh;
-          overflow-y: auto;
+          margin: auto;
           background: var(--bg-secondary);
           border: 1px solid var(--border);
           border-radius: var(--radius-lg);
@@ -227,10 +228,11 @@ export default function ProjectModal({ project, onClose }) {
         @media (max-width: 640px) {
           .modal-overlay {
             padding: 16px;
+            align-items: flex-start;
           }
 
           .modal-content {
-            max-height: 85vh;
+            margin: 0 auto;
           }
 
           .modal-header {
