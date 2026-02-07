@@ -34,25 +34,30 @@ export const projects = [
     title: "ELUCID",
     description: "A concept for a CS/CX CRM built from scratch. Designed to streamline retention workflows, surface risk signals early, and give CS teams a single pane of glass instead of five tabs and a prayer.",
     tags: ["React", "Supabase", "CS Strategy"],
-    link: "#",
+    preview: {
+      type: "video",
+      src: "/previews/elucid-preview.mp4",
+      poster: "/previews/elucid.png",
+      alt: "ELUCID CRM dashboard preview",
+    },
   },
   {
     title: "Only The Dedicated",
     description: "A minimalist athletic apparel brand concept. Focused on intimate, high-quality gym attire that earns its place in your rotation. Clean identity, no noise.",
     tags: ["Brand Identity", "E-Commerce", "Design"],
-    link: "#",
+    preview: null,
   },
   {
     title: "Social Fitness Tracker",
     description: "A social-first fitness app currently in design. Built around accountability, not vanity metrics. Track progress, share wins, challenge friends.",
     tags: ["React", "UI/UX", "Vite"],
-    link: "#",
+    preview: null,
   },
   {
     title: "CS Sales Training System",
     description: "A bespoke training tool built for clinical specialists to sharpen sales efficiency. Real scenarios, real objections, measurable improvement.",
     tags: ["Training Design", "RevOps", "Analytics"],
-    link: "#",
+    preview: null,
   },
 ];
 

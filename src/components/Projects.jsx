@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { projects } from '../data';
+import ProjectModal from './ProjectModal';
 
 const cardAccents = [
   { border: 'rgba(255, 107, 107, 0.2)', bg: 'rgba(255, 107, 107, 0.04)' },
@@ -8,6 +10,8 @@ const cardAccents = [
 ];
 
 export default function Projects() {
+  const [activeProject, setActiveProject] = useState(null);
+
   return (
     <section id="projects">
       <div className="section">
@@ -16,11 +20,19 @@ export default function Projects() {
 
         <div className="projects__grid">
           {projects.map((project, i) => (
-            <a
+            <div
               key={project.title}
-              href={project.link}
               className="project-card glass"
               style={{ animationDelay: `${i * 0.08}s` }}
+              onClick={() => setActiveProject(project)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveProject(project);
+                }
+              }}
             >
               <div
                 className="project-card__accent-line"
@@ -39,10 +51,17 @@ export default function Projects() {
               <p className="project-card__tags">
                 {project.tags.join(' · ')}
               </p>
-            </a>
+            </div>
           ))}
         </div>
       </div>
+
+      {activeProject && (
+        <ProjectModal
+          project={activeProject}
+          onClose={() => setActiveProject(null)}
+        />
+      )}
 
       <style>{`
         .projects__grid {
@@ -58,6 +77,8 @@ export default function Projects() {
           gap: 12px;
           transition: all var(--transition);
           animation: fadeInUp 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+          cursor: pointer;
+          user-select: none;
         }
 
         .project-card:hover {
