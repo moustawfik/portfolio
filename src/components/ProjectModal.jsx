@@ -172,8 +172,10 @@ export default function ProjectModal({ project, onClose }) {
         .modal-image,
         .modal-video {
           display: block;
-          width: 100%;
-          height: auto;
+          max-width: 100%;
+          max-height: 50vh;
+          margin: 0 auto;
+          object-fit: contain;
         }
 
         .modal-placeholder {
