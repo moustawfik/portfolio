@@ -48,10 +48,15 @@ export const projects = [
     preview: null,
   },
   {
-    title: "Social Fitness Tracker",
-    description: "A social-first fitness app currently in design. Built around accountability, not vanity metrics. Track progress, share wins, challenge friends.",
-    tags: ["React", "UI/UX", "Vite"],
-    preview: null,
+    title: "Pulse",
+    description: "A biological signal interpreter that adapts to you. Reads wearable data like HRV, sleep rhythms, and recovery patterns, then reshapes your dashboard, movement suggestions, and insights daily. Not a tracker — a living system.",
+    tags: ["React Native", "HealthKit", "AI/ML"],
+    preview: {
+      type: "video",
+      src: "/previews/fitness-preview.mp4",
+      poster: "/previews/fitness-poster.png",
+      alt: "Pulse app preview — biological signal dashboard",
+    },
   },
   {
     title: "CS Sales Training System",
