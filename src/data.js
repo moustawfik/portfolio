@@ -68,13 +68,13 @@ export const projects = [
 
 export const skills = [
   {
-    category: "Technical",
-    subheader: "Building for users, not machines.",
+    category: "Technical & Product",
+    subheader: "Ship it, then make it better.",
     items: [
       "Vibe-Coding & Agentic Engineering",
       "Prompt Architecture & LLM Implementation",
-      "Supabase (Database & Auth Management)",
-      "Rapid Prototyping (Concept to Deployment)",
+      "Product Scoping & MVP Strategy",
+      "Feature Prioritization & Trade-off Analysis",
       "Internal Tool Development",
     ],
   },
@@ -94,9 +94,31 @@ export const skills = [
     subheader: "Building systems that prevent reactive chaos.",
     items: [
       "CS Operations & RevOps Strategy",
-      "Retention Analytics & Churn Mitigation",
       "AI Workflow Automation",
       "CRM Data Modeling",
+      "Process Design & Scalability",
+      "Cross-functional Coordination",
+    ],
+  },
+  {
+    category: "Commercial",
+    subheader: "Revenue is a relationship, not a transaction.",
+    items: [
+      "Renewal Strategy & Revenue Retention",
+      "Stakeholder Negotiation & Deal Structuring",
+      "Customer Advocacy & Relationship Management",
+      "Pipeline Forecasting & Revenue Analytics",
+      "Cross-functional GTM Alignment",
+    ],
+  },
+  {
+    category: "Analytical",
+    subheader: "Decisions without data are just opinions.",
+    items: [
+      "Retention Analytics & Churn Modeling",
+      "KPI Frameworks & Reporting Cadences",
+      "Cohort Analysis & Health Scoring",
+      "Data-Driven Decision Making",
       "Strategic Problem Solving",
     ],
   },
@@ -104,10 +126,10 @@ export const skills = [
     category: "Executive",
     subheader: "Student first, teacher second.",
     items: [
-      "Renewal Negotiation & Revenue Retention",
-      "Strategic Planning & Execution",
       "Cross-functional Leadership",
       "Team Enablement & Mentorship",
+      "Strategic Planning & Execution",
+      "Culture Building & Radical Candor",
       "Human-in-the-Loop Philosophy",
     ],
   },
