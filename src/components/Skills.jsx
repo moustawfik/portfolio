@@ -2,35 +2,35 @@ import { useState } from 'react';
 import { skills } from '../data';
 
 const categoryStyles = [
+  // Technical & Product — coral to orange
   {
     gradient: 'linear-gradient(135deg, #ff6b6b, #ee5a24)',
-    accent: '#ff6b6b',
     dot: '#ff6b6b',
   },
+  // Creative — peach to rose
   {
     gradient: 'linear-gradient(135deg, #ffad76, #f7797d)',
-    accent: '#ffad76',
     dot: '#ffad76',
   },
+  // Operations — gold to coral
   {
-    gradient: 'linear-gradient(135deg, #fbd786, #f7797d)',
-    accent: '#fbd786',
+    gradient: 'linear-gradient(135deg, #fbd786, #ee5a24)',
     dot: '#fbd786',
   },
+  // Commercial — rose to deep coral
   {
-    gradient: 'linear-gradient(135deg, #fccb90, #ee5a24)',
-    accent: '#fccb90',
+    gradient: 'linear-gradient(135deg, #f7797d, #c0392b)',
+    dot: '#f7797d',
+  },
+  // Analytical — warm cream to peach
+  {
+    gradient: 'linear-gradient(135deg, #fccb90, #f7797d)',
     dot: '#fccb90',
   },
+  // Executive — soft orange to gold
   {
-    gradient: 'linear-gradient(135deg, #ff6b6b, #ffad76)',
-    accent: '#ff6b6b',
-    dot: '#ff6b6b',
-  },
-  {
-    gradient: 'linear-gradient(135deg, #ffad76, #fbd786)',
-    accent: '#ffad76',
-    dot: '#ffad76',
+    gradient: 'linear-gradient(135deg, #e8a87c, #d4a574)',
+    dot: '#e8a87c',
   },
 ];
 
@@ -125,6 +125,7 @@ export default function Skills() {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 16px;
+          align-items: start;
         }
 
         .skill-group {
