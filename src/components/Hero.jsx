@@ -99,7 +99,7 @@ export default function Hero() {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #4ade80;
+          background: var(--badge-dot);
         }
 
         .hero__name {
@@ -107,7 +107,7 @@ export default function Hero() {
           font-weight: 700;
           letter-spacing: -1.5px;
           line-height: 1.05;
-          background: linear-gradient(135deg, #f2f0ed 0%, #f2f0ed 30%, #ff6b6b 65%, #ffad76 100%);
+          background: var(--hero-name-gradient);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -154,7 +154,7 @@ export default function Hero() {
 
         .hero__btn--primary {
           background: var(--gradient-primary);
-          color: #fff;
+          color: var(--btn-primary-text);
         }
 
         .hero__btn--primary:hover {

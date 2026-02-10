@@ -3,7 +3,7 @@ export const profile = {
   tagline: "Solve. Build. Lead. Repeat.",
   bio: "The person you call before it becomes a fire.",
   location: "Baltimore, MD",
-  email: "moustafa.m.tawfik@gmail.com",
+  email: "mous.m.tawfik@gmail.com",
   linkedin: "https://linkedin.com/in/moustawfik",
   github: "https://github.com/yourprofile",
 };

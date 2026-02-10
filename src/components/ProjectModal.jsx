@@ -86,7 +86,7 @@ export default function ProjectModal({ project, onClose }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(0, 0, 0, 0.85);
+          background: var(--overlay-bg);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           animation: modalFadeIn 0.25s ease both;
@@ -126,7 +126,7 @@ export default function ProjectModal({ project, onClose }) {
           width: 36px;
           height: 36px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.06);
+          background: var(--modal-close-bg);
           border: 1px solid var(--border);
           color: var(--text-secondary);
           transition: all var(--transition);
@@ -166,7 +166,7 @@ export default function ProjectModal({ project, onClose }) {
           border-radius: var(--radius-md);
           overflow: hidden;
           border: 1px solid var(--border);
-          background: rgba(0, 0, 0, 0.3);
+          background: var(--modal-media-bg);
         }
 
         .modal-image,

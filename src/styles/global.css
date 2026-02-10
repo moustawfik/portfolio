@@ -8,6 +8,8 @@
 }
 
 :root {
+  color-scheme: dark;
+
   /* Electric Coral palette */
   --bg-primary: #141517;
   --bg-secondary: #1a1b1e;
@@ -45,6 +47,58 @@
 
   --transition: 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
   --transition-slow: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* Component-specific tokens (dark defaults) */
+  --nav-scrolled-bg: rgba(20, 21, 23, 0.92);
+  --nav-mobile-bg: rgba(20, 21, 23, 0.98);
+  --hero-name-gradient: linear-gradient(135deg, #f2f0ed 0%, #f2f0ed 30%, #ff6b6b 65%, #ffad76 100%);
+  --badge-dot: #4ade80;
+  --btn-primary-text: #fff;
+  --contact-title-gradient: linear-gradient(135deg, #f2f0ed 0%, #ff6b6b 100%);
+  --icon-bg: rgba(255, 255, 255, 0.04);
+  --overlay-bg: rgba(0, 0, 0, 0.85);
+  --modal-close-bg: rgba(255, 255, 255, 0.06);
+  --modal-media-bg: rgba(0, 0, 0, 0.3);
+  --grain-opacity: 0.03;
+}
+
+/* ── Light theme ── */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-primary: #f5f3f0;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(0, 0, 0, 0.025);
+  --bg-card-hover: rgba(0, 0, 0, 0.045);
+  --bg-elevated: rgba(0, 0, 0, 0.03);
+
+  --text-primary: #1a1b1e;
+  --text-secondary: #5c5a55;
+  --text-tertiary: #a09d96;
+
+  --gradient-text: linear-gradient(135deg, #d94545 0%, #c47a30 50%, #b8922e 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(255, 107, 107, 0.07) 0%, rgba(238, 90, 36, 0.05) 100%);
+
+  --accent-soft: rgba(255, 107, 107, 0.08);
+
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(255, 107, 107, 0.35);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+  --nav-scrolled-bg: rgba(245, 243, 240, 0.92);
+  --nav-mobile-bg: rgba(245, 243, 240, 0.98);
+  --hero-name-gradient: linear-gradient(135deg, #1a1b1e 0%, #1a1b1e 30%, #d94545 65%, #c47a30 100%);
+  --badge-dot: #16a34a;
+  --btn-primary-text: #fff;
+  --contact-title-gradient: linear-gradient(135deg, #1a1b1e 0%, #d94545 100%);
+  --icon-bg: rgba(0, 0, 0, 0.04);
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+  --modal-close-bg: rgba(0, 0, 0, 0.06);
+  --modal-media-bg: rgba(0, 0, 0, 0.06);
+  --grain-opacity: 0.015;
 }
 
 html {
@@ -60,6 +114,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ── Film grain texture overlay ── */
@@ -69,7 +124,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 1000;
-  opacity: 0.03;
+  opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 180px;

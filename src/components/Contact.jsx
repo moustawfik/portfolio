@@ -78,7 +78,7 @@ export default function Contact() {
         .contact__title {
           font-size: 26px;
           font-weight: 700;
-          background: linear-gradient(135deg, #f2f0ed 0%, #ff6b6b 100%);
+          background: var(--contact-title-gradient);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -122,7 +122,7 @@ export default function Contact() {
           width: 56px;
           height: 56px;
           border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.04);
+          background: var(--icon-bg);
           border: 1px solid var(--border);
           transition: all var(--transition);
         }
