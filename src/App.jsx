@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -5,8 +6,9 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import RetentionApp from './retention/RetentionApp';
 
-export default function App() {
+function PortfolioLayout() {
   return (
     <>
       <Nav />
@@ -19,5 +21,14 @@ export default function App() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<PortfolioLayout />} />
+      <Route path="/retention-architecture/*" element={<RetentionApp />} />
+    </Routes>
   );
 }

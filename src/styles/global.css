@@ -60,6 +60,11 @@
   --modal-close-bg: rgba(255, 255, 255, 0.06);
   --modal-media-bg: rgba(0, 0, 0, 0.3);
   --grain-opacity: 0.03;
+
+  /* Retention Architecture layout */
+  --ra-sidebar-width: 220px;
+  --ra-nav-height: 56px;
+  --ra-content-max-width: 800px;
 }
 
 /* ── Light theme ── */

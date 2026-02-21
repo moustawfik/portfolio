@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../ThemeContext';
 
 const navLinks = [
@@ -6,6 +7,7 @@ const navLinks = [
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
   { label: 'Contact', href: '#contact' },
+  { label: 'Frameworks', href: '/retention-architecture', isRoute: true },
 ];
 
 export default function Nav() {
@@ -36,8 +38,12 @@ export default function Nav() {
         </a>
 
         <div className="nav__links">
-          {navLinks.map(({ label, href }) => (
-            <a key={label} href={href} className="nav__link">{label}</a>
+          {navLinks.map(({ label, href, isRoute }) => (
+            isRoute ? (
+              <Link key={label} to={href} className="nav__link">{label}</Link>
+            ) : (
+              <a key={label} href={href} className="nav__link">{label}</a>
+            )
           ))}
         </div>
 
@@ -77,15 +83,26 @@ export default function Nav() {
 
       {mobileOpen && (
         <div className="nav__mobile">
-          {navLinks.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              className="nav__mobile-link"
-              onClick={() => setMobileOpen(false)}
-            >
-              {label}
-            </a>
+          {navLinks.map(({ label, href, isRoute }) => (
+            isRoute ? (
+              <Link
+                key={label}
+                to={href}
+                className="nav__mobile-link"
+                onClick={() => setMobileOpen(false)}
+              >
+                {label}
+              </Link>
+            ) : (
+              <a
+                key={label}
+                href={href}
+                className="nav__mobile-link"
+                onClick={() => setMobileOpen(false)}
+              >
+                {label}
+              </a>
+            )
           ))}
         </div>
       )}
