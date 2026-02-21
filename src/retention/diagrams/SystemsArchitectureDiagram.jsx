@@ -274,7 +274,7 @@ export default function SystemsArchitectureDiagram() {
         .sys-arch__detail-name {
           font-size: 12px;
           font-weight: 600;
-          color: var(--layer-color);
+          color: var(--text-primary);
           letter-spacing: 0.2px;
         }
 
@@ -329,8 +329,8 @@ export default function SystemsArchitectureDiagram() {
           line-height: 1.4;
         }
 
-        .sys-arch__expand-row:hover .sys-arch__expand-name {
-          color: var(--layer-color);
+        .sys-arch__expand-row:hover .sys-arch__expand-desc {
+          color: var(--text-secondary);
         }
 
         .sys-arch__arrow {
