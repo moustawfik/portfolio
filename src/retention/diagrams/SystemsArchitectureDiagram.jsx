@@ -78,17 +78,15 @@ export default function SystemsArchitectureDiagram() {
     }
   }
 
-  const activeLayerData = activeLayer ? layers.find(l => l.id === activeLayer) : null;
-  const activeToolData = activeTool && activeLayerData
-    ? activeLayerData.tools.find(t => t.id === activeTool)
-    : null;
-
   return (
     <div className="sys-arch">
       <div className="sys-arch__flow">
         {layers.map((layer, i) => {
           const isActive = !activeLayer || activeLayer === layer.id;
           const isCurrent = activeLayer === layer.id;
+          const currentToolData = activeTool && isCurrent
+            ? layer.tools.find(t => t.id === activeTool)
+            : null;
 
           return (
             <div key={layer.id} className="sys-arch__lane">
@@ -122,6 +120,35 @@ export default function SystemsArchitectureDiagram() {
                 </div>
               </div>
 
+              {/* Inline detail — expands directly under this layer card */}
+              {isCurrent && currentToolData && (
+                <div className="sys-arch__inline-detail" style={{ '--layer-color': layer.color }}>
+                  <div className="sys-arch__inline-detail-accent" />
+                  <div className="sys-arch__inline-detail-content">
+                    <span className="sys-arch__inline-detail-name">{currentToolData.label}</span>
+                    <span className="sys-arch__inline-detail-desc">{currentToolData.detail}</span>
+                  </div>
+                </div>
+              )}
+
+              {isCurrent && !activeTool && (
+                <div className="sys-arch__inline-expand" style={{ '--layer-color': layer.color }}>
+                  <div className="sys-arch__inline-expand-accent" />
+                  <div className="sys-arch__inline-expand-grid">
+                    {layer.tools.map((tool) => (
+                      <button
+                        key={tool.id}
+                        className="sys-arch__inline-expand-item"
+                        onClick={(e) => handleToolClick(e, tool.id, layer.id)}
+                      >
+                        <span className="sys-arch__inline-expand-name">{tool.label}</span>
+                        <span className="sys-arch__inline-expand-desc">{tool.detail}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Flow arrow between layers */}
               {i < layers.length - 1 && (
                 <div className="sys-arch__arrow" style={{ opacity: isActive && (!activeLayer || activeLayer === layers[i + 1].id || isCurrent) ? 1 : 0.2 }}>
@@ -135,40 +162,6 @@ export default function SystemsArchitectureDiagram() {
           );
         })}
       </div>
-
-      {/* Detail panel */}
-      {activeToolData && (
-        <div className="sys-arch__detail">
-          <div className="sys-arch__detail-header">
-            <span className="sys-arch__detail-dot" style={{ background: activeLayerData.color }} />
-            <div>
-              <h4 className="sys-arch__detail-title">{activeToolData.label}</h4>
-              <p className="sys-arch__detail-layer">{activeLayerData.label}</p>
-            </div>
-          </div>
-          <p className="sys-arch__detail-body">{activeToolData.detail}</p>
-        </div>
-      )}
-
-      {activeLayer && !activeTool && (
-        <div className="sys-arch__detail">
-          <div className="sys-arch__detail-header">
-            <span className="sys-arch__detail-dot" style={{ background: activeLayerData.color }} />
-            <div>
-              <h4 className="sys-arch__detail-title">{activeLayerData.label}</h4>
-              <p className="sys-arch__detail-layer">{activeLayerData.sublabel}</p>
-            </div>
-          </div>
-          <div className="sys-arch__detail-tools">
-            {activeLayerData.tools.map((tool) => (
-              <div key={tool.id} className="sys-arch__detail-tool">
-                <span className="sys-arch__detail-tool-name">{tool.label}</span>
-                <span className="sys-arch__detail-tool-desc">{tool.detail}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {!activeLayer && (
         <p className="sys-arch__hint">Click a layer to explore the architecture</p>
@@ -272,6 +265,108 @@ export default function SystemsArchitectureDiagram() {
           font-weight: 600;
         }
 
+        /* Inline detail — single tool selected */
+        .sys-arch__inline-detail {
+          width: 100%;
+          margin-top: 6px;
+          padding: 14px 20px 14px 24px;
+          background: var(--bg-card);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          position: relative;
+          overflow: hidden;
+          animation: sysArchSlideDown 0.2s ease both;
+        }
+
+        .sys-arch__inline-detail-accent {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 3px;
+          height: 100%;
+          background: var(--layer-color);
+          opacity: 0.5;
+        }
+
+        .sys-arch__inline-detail-content {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          padding-left: 8px;
+        }
+
+        .sys-arch__inline-detail-name {
+          font-size: 13px;
+          font-weight: 600;
+          color: var(--text-primary);
+        }
+
+        .sys-arch__inline-detail-desc {
+          font-size: 12px;
+          color: var(--text-secondary);
+          line-height: 1.5;
+        }
+
+        /* Inline expand — layer selected, no tool */
+        .sys-arch__inline-expand {
+          width: 100%;
+          margin-top: 6px;
+          padding: 16px 20px 16px 24px;
+          background: var(--bg-card);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          position: relative;
+          overflow: hidden;
+          animation: sysArchSlideDown 0.2s ease both;
+        }
+
+        .sys-arch__inline-expand-accent {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 3px;
+          height: 100%;
+          background: var(--layer-color);
+          opacity: 0.5;
+        }
+
+        .sys-arch__inline-expand-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          padding-left: 8px;
+        }
+
+        .sys-arch__inline-expand-item {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          padding: 10px 14px;
+          background: var(--bg-elevated, rgba(255,255,255,0.02));
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          text-align: left;
+          font-family: Montserrat, sans-serif;
+        }
+
+        .sys-arch__inline-expand-item:hover {
+          border-color: var(--layer-color);
+        }
+
+        .sys-arch__inline-expand-name {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--text-primary);
+        }
+
+        .sys-arch__inline-expand-desc {
+          font-size: 11px;
+          color: var(--text-secondary);
+          line-height: 1.4;
+        }
+
         .sys-arch__arrow {
           display: flex;
           flex-direction: column;
@@ -292,83 +387,23 @@ export default function SystemsArchitectureDiagram() {
           letter-spacing: 0.3px;
         }
 
-        .sys-arch__detail {
-          margin-top: 20px;
-          padding: 20px 24px;
-          background: var(--bg-card);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-md);
-          animation: fadeInUp 0.25s ease both;
-        }
-
-        .sys-arch__detail-header {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 16px;
-        }
-
-        .sys-arch__detail-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          flex-shrink: 0;
-        }
-
-        .sys-arch__detail-title {
-          font-size: 15px;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin: 0;
-        }
-
-        .sys-arch__detail-layer {
-          font-size: 11px;
-          color: var(--text-tertiary);
-          margin: 1px 0 0;
-        }
-
-        .sys-arch__detail-body {
-          font-size: 13px;
-          color: var(--text-secondary);
-          line-height: 1.6;
-          margin: 0;
-        }
-
-        .sys-arch__detail-tools {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .sys-arch__detail-tool {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-          padding: 12px 16px;
-          background: var(--bg-elevated, rgba(255,255,255,0.02));
-          border: 1px solid var(--border);
-          border-radius: 8px;
-        }
-
-        .sys-arch__detail-tool-name {
-          font-size: 12px;
-          font-weight: 600;
-          color: var(--text-primary);
-        }
-
-        .sys-arch__detail-tool-desc {
-          font-size: 11px;
-          color: var(--text-secondary);
-          line-height: 1.5;
-        }
-
         .sys-arch__hint {
           text-align: center;
           font-size: 12px;
           color: var(--text-tertiary);
           margin-top: 12px;
           font-style: italic;
+        }
+
+        @keyframes sysArchSlideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-6px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         @media (max-width: 640px) {
@@ -383,6 +418,11 @@ export default function SystemsArchitectureDiagram() {
           .sys-arch__tool {
             font-size: 10px;
             padding: 4px 10px;
+          }
+
+          .sys-arch__inline-detail,
+          .sys-arch__inline-expand {
+            padding: 12px 16px 12px 20px;
           }
         }
       `}</style>
