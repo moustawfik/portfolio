@@ -82,5 +82,38 @@ export default {
         text: "Resist the urge to start with reporting. Dashboards built on unreliable data just make bad decisions look more official."
       },
     },
+    {
+      heading: "Data Hygiene: The Discipline That Makes Everything Work",
+      body: [
+        "I need to say this clearly because it gets glossed over: none of the architecture above matters if your data is dirty. Not some of it. None of it. A health score built on incomplete usage data is a random number generator with a nice UI. A playbook triggered by a stale CRM field is sending your team on a fool's errand. You cannot build intelligence on top of noise and expect signal to come out the other side.",
+        "Data hygiene is not a project. It's a discipline. You don't clean your data once and move on. You build an operating rhythm that keeps it clean, assigns ownership to every critical field, and measures quality the same way you measure retention — continuously, with consequences when it degrades.",
+        "Start by identifying the fields that actually matter. Not every field in your CRM needs to be pristine. But renewal date, contract value, primary contact, executive sponsor, product tier, and health score inputs? Those are load-bearing. If any of those are wrong, your entire downstream operation is compromised. Map each critical field to an owner — not a team, a person. If nobody owns a field, nobody maintains it. That's not cynicism. That's every CRM I've ever audited."
+      ],
+      callout: {
+        type: 'warning',
+        text: "If you ask your team to name the single source of truth for renewal dates and you get two different answers, you have a data hygiene crisis. Not a data hygiene problem — a crisis. Two sources of truth means zero sources of truth."
+      },
+    },
+    {
+      heading: "Building a Hygiene Cadence",
+      body: [
+        "Data quality degrades by default. Contacts leave companies, contracts get amended mid-term, new products get added to accounts, and nobody updates the record. Entropy is the natural state of CRM data. The only thing that fights entropy is a cadence.",
+        "Weekly: CS Ops runs an automated scan for critical field gaps — missing renewal dates, blank executive sponsors, accounts with no activity logged in 30+ days. These aren't reports that sit in a dashboard. They're task queues that route directly to the responsible CSM with a deadline. If the field isn't populated by end of week, it escalates.",
+        "Monthly: CS Ops validates a sample of health score inputs against reality. Pull 20 accounts. Compare what the system says to what the CSM says. If they diverge on more than 3 or 4, your data layer has drift. Find out where the drift started — is it a broken integration, a process gap, or a CSM who stopped logging? Each root cause has a different fix.",
+        "Quarterly: Run a full data quality audit. Measure completeness rates for every critical field. Compare current-quarter data to last quarter's baseline. Are you improving or degrading? Report data quality metrics to the same leadership audience that sees retention metrics. When data quality becomes visible at the executive level, it gets resourced. When it's buried in an ops backlog, it stays broken."
+      ],
+      table: {
+        headers: ["Cadence", "Action", "Owner", "Escalation"],
+        rows: [
+          ["Weekly", "Automated scan for critical field gaps; task queue to responsible CSM", "CS Ops", "Unfilled fields escalate to CS Manager after 5 business days"],
+          ["Monthly", "Sample 20 accounts; compare system data to CSM ground truth", "CS Ops", "Drift above 15% triggers integration and process audit"],
+          ["Quarterly", "Full data quality audit; completeness rates for all critical fields", "CS Ops + CS Leader", "Results reported alongside retention metrics to leadership"],
+        ],
+      },
+      callout: {
+        type: 'example',
+        text: "A team I worked with discovered that 34% of their accounts had incorrect renewal dates in the CRM — some off by months. Their health scores were technically accurate, but they were triggering renewal playbooks at the wrong time. After implementing a monthly validation cadence, renewal date accuracy hit 97% within two quarters and on-time renewal execution improved from 61% to 89%."
+      },
+    },
   ],
 };
