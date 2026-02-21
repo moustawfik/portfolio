@@ -1,11 +1,11 @@
 export default {
-  lede: "Most CS teams operate in a permanent state of reaction. Something breaks, someone escalates, a renewal date sneaks up, and the team scrambles. They call this customer success. It is not. It is customer triage. Proactive motion design means building systems that detect risk and trigger intervention before the fire starts — not after the building is already on fire.",
+  lede: "Most CS teams operate in a permanent state of reaction. Something breaks, someone escalates, a renewal date sneaks up, and the team scrambles. They call this customer success. It's not. It's customer triage. Proactive motion design means building systems that detect risk and trigger intervention before the fire starts — not after the building is already burning.",
   sections: [
     {
       heading: "The Reactive Trap",
       body: [
-        "Reactive CS feels productive. Your team is busy. The Slack channels are active. Escalation meetings fill the calendar. Everyone is working hard. And retention is still declining.",
-        "The trap is that reactive work is visible and urgent, while proactive work is invisible and strategic. When a CSM saves an account that was about to churn, they get credit. When a system quietly prevents that account from ever reaching churn risk, nobody notices. This creates a perverse incentive: reactive heroics get celebrated while systemic prevention gets ignored.",
+        "Reactive CS feels productive. Your team is busy. Slack channels are active. Escalation meetings fill the calendar. Everyone is working hard. And retention is still declining.",
+        "The trap is that reactive work is visible and urgent, while proactive work is invisible and strategic. When a CSM saves an account that was about to churn, they get credit. When a system quietly prevents that account from ever reaching churn risk, nobody notices. I've lived this — the firefighter gets the standing ovation while the person who installed the sprinkler system gets nothing. This creates a perverse incentive: reactive heroics get celebrated while systemic prevention gets ignored.",
         "The cost of reactive CS is measurable. For every account that enters a save motion, the average cost is 3-5x what it would have cost to intervene proactively. That cost includes CSM time diverted from healthy accounts, leadership attention pulled into escalation calls, commercial concessions offered to retain the customer, and the accounts that were neglected while the team was firefighting."
       ],
       callout: {
@@ -17,7 +17,7 @@ export default {
       heading: "Signal Detection: The Foundation of Proactive CS",
       body: [
         "Proactive motion starts with signal detection. Your system needs to identify risk before your CSM does. This means instrumenting the right signals and building thresholds that trigger action automatically.",
-        "Signals fall into three categories: leading indicators, lagging indicators, and event triggers. Most CS teams only track lagging indicators — NPS scores, renewal rates, CSAT. By the time these move, the damage is done."
+        "Signals fall into three categories: leading indicators, lagging indicators, and event triggers. Most CS teams only track lagging indicators — NPS scores, renewal rates, CSAT. By the time these move, the damage is already done. You're reading the autopsy, not the vital signs."
       ],
       bullets: [
         "Leading Indicators — Usage velocity changes, champion engagement frequency, feature adoption depth, executive sponsor meeting cadence. These move weeks or months before retention outcomes change.",
@@ -28,8 +28,8 @@ export default {
     {
       heading: "Designing Trigger-Based Workflows",
       body: [
-        "A proactive workflow has four components: the trigger condition, the response action, the owner assignment, and the outcome measurement. Every workflow should be documented at this level of specificity. If you cannot define all four components, the workflow is not ready to operationalize.",
-        "The trigger condition is the signal or combination of signals that activates the workflow. Do not build triggers on single signals — that creates noise. Combine signals to increase specificity. A usage drop alone might be seasonal. A usage drop combined with a support ticket increase and a missed QBR is a pattern."
+        "A proactive workflow has four components: the trigger condition, the response action, the owner assignment, and the outcome measurement. Every workflow should be documented at this level of specificity. If you can't define all four, it's not ready to operationalize.",
+        "The trigger condition is the signal or combination of signals that activates the workflow. Don't build triggers on single signals — that creates noise. Combine signals to increase specificity. A usage drop alone might be seasonal. A usage drop combined with a support ticket increase and a missed QBR? That's a pattern."
       ],
       table: {
         headers: ["Trigger", "Response", "Owner", "Measurement"],
@@ -45,8 +45,8 @@ export default {
     {
       heading: "The Proactive-Reactive Ratio",
       body: [
-        "You cannot eliminate reactive work entirely. Customers will always have issues that require response. The goal is to shift the ratio. In a mature CS organization, the target is roughly 70% proactive work (planned outreach, strategic touchpoints, expansion motions) to 30% reactive work (inbound issues, escalations, unplanned saves).",
-        "Most teams operate at the inverse: 70% reactive, 30% proactive. Flipping this ratio requires investment in three areas: signal infrastructure (detecting problems early), workflow automation (routing the right action to the right person), and capacity management (ensuring CSMs have time for planned work instead of being consumed by firefighting)."
+        "You can't eliminate reactive work entirely. Customers will always have issues that require response. The goal is to shift the ratio. In a mature CS organization, the target is roughly 70% proactive to 30% reactive.",
+        "Most teams operate at the inverse. Flipping it requires investment in three areas: signal infrastructure (detecting problems early), workflow automation (routing the right action to the right person), and capacity management (ensuring CSMs have time for planned work instead of being consumed by firefighting). Begin with the end in mind — what does a proactive week actually look like for your team? Work backward from there."
       ],
       callout: {
         type: 'example',
@@ -56,7 +56,7 @@ export default {
     {
       heading: "Building the Motion: Week-by-Week",
       body: [
-        "Shifting from reactive to proactive does not happen in a single sprint. It is a gradual rewiring of how your team operates, what they measure, and what they prioritize."
+        "Shifting from reactive to proactive doesn't happen in a single sprint. It's a gradual rewiring of how your team operates, what they measure, and what they prioritize."
       ],
       table: {
         headers: ["Week", "Action", "Owner"],
@@ -71,7 +71,7 @@ export default {
       },
       callout: {
         type: 'warning',
-        text: "Do not skip shadow mode. Deploying untested triggers directly to your CSMs will flood them with false positives, erode trust in the system, and make the next automation initiative harder to adopt."
+        text: "Don't skip shadow mode. Deploying untested triggers directly to your CSMs will flood them with false positives, erode trust in the system, and make the next automation initiative twice as hard to sell internally."
       },
     },
   ],
