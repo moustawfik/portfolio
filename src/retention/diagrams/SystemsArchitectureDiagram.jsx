@@ -92,7 +92,7 @@ export default function SystemsArchitectureDiagram() {
             <div key={layer.id} className="sys-arch__lane">
               {/* Layer card */}
               <div
-                className={`sys-arch__layer ${isCurrent ? 'sys-arch__layer--active' : ''}`}
+                className={`sys-arch__layer ${isCurrent ? 'sys-arch__layer--active' : ''} ${isCurrent && !activeTool ? 'sys-arch__layer--expanded' : ''}`}
                 style={{
                   '--layer-color': layer.color,
                   opacity: isActive ? 1 : 0.35,
@@ -118,36 +118,31 @@ export default function SystemsArchitectureDiagram() {
                     </button>
                   ))}
                 </div>
-              </div>
 
-              {/* Inline detail — expands directly under this layer card */}
-              {isCurrent && currentToolData && (
-                <div className="sys-arch__inline-detail" style={{ '--layer-color': layer.color }}>
-                  <div className="sys-arch__inline-detail-accent" />
-                  <div className="sys-arch__inline-detail-content">
-                    <span className="sys-arch__inline-detail-name">{currentToolData.label}</span>
-                    <span className="sys-arch__inline-detail-desc">{currentToolData.detail}</span>
+                {/* Inline detail — single tool selected, rendered inside the card */}
+                {isCurrent && currentToolData && (
+                  <div className="sys-arch__detail" onClick={(e) => e.stopPropagation()}>
+                    <span className="sys-arch__detail-name">{currentToolData.label}</span>
+                    <span className="sys-arch__detail-desc">{currentToolData.detail}</span>
                   </div>
-                </div>
-              )}
+                )}
 
-              {isCurrent && !activeTool && (
-                <div className="sys-arch__inline-expand" style={{ '--layer-color': layer.color }}>
-                  <div className="sys-arch__inline-expand-accent" />
-                  <div className="sys-arch__inline-expand-grid">
-                    {layer.tools.map((tool) => (
+                {/* Inline expand — layer clicked, no tool, rendered inside the card */}
+                {isCurrent && !activeTool && (
+                  <div className="sys-arch__expand" onClick={(e) => e.stopPropagation()}>
+                    {layer.tools.map((tool, ti) => (
                       <button
                         key={tool.id}
-                        className="sys-arch__inline-expand-item"
+                        className={`sys-arch__expand-row ${ti < layer.tools.length - 1 ? 'sys-arch__expand-row--bordered' : ''}`}
                         onClick={(e) => handleToolClick(e, tool.id, layer.id)}
                       >
-                        <span className="sys-arch__inline-expand-name">{tool.label}</span>
-                        <span className="sys-arch__inline-expand-desc">{tool.detail}</span>
+                        <span className="sys-arch__expand-name">{tool.label}</span>
+                        <span className="sys-arch__expand-desc">{tool.detail}</span>
                       </button>
                     ))}
                   </div>
-                </div>
-              )}
+                )}
+              </div>
 
               {/* Flow arrow between layers */}
               {i < layers.length - 1 && (
@@ -265,106 +260,77 @@ export default function SystemsArchitectureDiagram() {
           font-weight: 600;
         }
 
-        /* Inline detail — single tool selected */
-        .sys-arch__inline-detail {
-          width: 100%;
-          margin-top: 6px;
-          padding: 14px 20px 14px 24px;
-          background: var(--bg-card);
-          border: 1px solid var(--border);
-          border-radius: 10px;
-          position: relative;
-          overflow: hidden;
-          animation: sysArchSlideDown 0.2s ease both;
-        }
-
-        .sys-arch__inline-detail-accent {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 3px;
-          height: 100%;
-          background: var(--layer-color);
-          opacity: 0.5;
-        }
-
-        .sys-arch__inline-detail-content {
+        /* Single tool detail — inside the card */
+        .sys-arch__detail {
+          margin-top: 16px;
+          padding: 12px 0 0 8px;
+          border-top: 1px solid var(--border);
           display: flex;
           flex-direction: column;
-          gap: 2px;
-          padding-left: 8px;
+          gap: 3px;
+          animation: sysArchFadeIn 0.2s ease both;
         }
 
-        .sys-arch__inline-detail-name {
-          font-size: 13px;
+        .sys-arch__detail-name {
+          font-size: 12px;
           font-weight: 600;
-          color: var(--text-primary);
+          color: var(--layer-color);
+          letter-spacing: 0.2px;
         }
 
-        .sys-arch__inline-detail-desc {
+        .sys-arch__detail-desc {
           font-size: 12px;
           color: var(--text-secondary);
           line-height: 1.5;
         }
 
-        /* Inline expand — layer selected, no tool */
-        .sys-arch__inline-expand {
-          width: 100%;
-          margin-top: 6px;
-          padding: 16px 20px 16px 24px;
-          background: var(--bg-card);
-          border: 1px solid var(--border);
-          border-radius: 10px;
-          position: relative;
-          overflow: hidden;
-          animation: sysArchSlideDown 0.2s ease both;
-        }
-
-        .sys-arch__inline-expand-accent {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 3px;
-          height: 100%;
-          background: var(--layer-color);
-          opacity: 0.5;
-        }
-
-        .sys-arch__inline-expand-grid {
+        /* Layer expand — inside the card */
+        .sys-arch__expand {
+          margin-top: 16px;
+          padding-top: 4px;
+          border-top: 1px solid var(--border);
           display: flex;
           flex-direction: column;
-          gap: 8px;
-          padding-left: 8px;
+          animation: sysArchFadeIn 0.2s ease both;
         }
 
-        .sys-arch__inline-expand-item {
+        .sys-arch__expand-row {
           display: flex;
           flex-direction: column;
-          gap: 2px;
-          padding: 10px 14px;
-          background: var(--bg-elevated, rgba(255,255,255,0.02));
-          border: 1px solid var(--border);
-          border-radius: 8px;
+          gap: 3px;
+          padding: 12px 8px;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: background 0.15s ease;
           text-align: left;
           font-family: Montserrat, sans-serif;
+          background: none;
+          border: none;
+          border-radius: 6px;
         }
 
-        .sys-arch__inline-expand-item:hover {
-          border-color: var(--layer-color);
+        .sys-arch__expand-row--bordered {
+          border-bottom: 1px solid var(--border);
+          border-radius: 0;
         }
 
-        .sys-arch__inline-expand-name {
+        .sys-arch__expand-row:hover {
+          background: var(--bg-elevated, rgba(255,255,255,0.03));
+        }
+
+        .sys-arch__expand-name {
           font-size: 12px;
           font-weight: 600;
           color: var(--text-primary);
         }
 
-        .sys-arch__inline-expand-desc {
+        .sys-arch__expand-desc {
           font-size: 11px;
-          color: var(--text-secondary);
+          color: var(--text-tertiary);
           line-height: 1.4;
+        }
+
+        .sys-arch__expand-row:hover .sys-arch__expand-name {
+          color: var(--layer-color);
         }
 
         .sys-arch__arrow {
@@ -395,15 +361,9 @@ export default function SystemsArchitectureDiagram() {
           font-style: italic;
         }
 
-        @keyframes sysArchSlideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-6px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        @keyframes sysArchFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
         @media (max-width: 640px) {
@@ -420,9 +380,17 @@ export default function SystemsArchitectureDiagram() {
             padding: 4px 10px;
           }
 
-          .sys-arch__inline-detail,
-          .sys-arch__inline-expand {
-            padding: 12px 16px 12px 20px;
+          .sys-arch__detail {
+            margin-top: 12px;
+            padding-top: 10px;
+          }
+
+          .sys-arch__expand {
+            margin-top: 12px;
+          }
+
+          .sys-arch__expand-row {
+            padding: 10px 8px;
           }
         }
       `}</style>
