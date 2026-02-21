@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { profile } from '../data';
 
 export default function Hero() {
@@ -22,15 +23,21 @@ export default function Hero() {
             <p className="hero__tagline">{profile.tagline}</p>
             <div className="hero__actions">
               <a href="#projects" className="hero__btn hero__btn--primary">
-                View Work
+                View Projects
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M7 17l9.2-9.2M17 17V7.8H7.8"/>
                 </svg>
               </a>
-              <a href="#contact" className="hero__btn hero__btn--ghost">
-                Get in Touch
-              </a>
+              <Link to="/retention-architecture" className="hero__btn hero__btn--ghost">
+                CS Frameworks
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M7 17l9.2-9.2M17 17V7.8H7.8"/>
+                </svg>
+              </Link>
             </div>
+            <a href="#contact" className="hero__contact-link">
+              Get in Touch →
+            </a>
           </div>
         </div>
       </div>
@@ -138,6 +145,19 @@ export default function Hero() {
           display: flex;
           gap: 12px;
           flex-wrap: wrap;
+          margin-bottom: 16px;
+        }
+
+        .hero__contact-link {
+          font-size: 13px;
+          font-weight: 500;
+          color: var(--text-tertiary);
+          transition: color var(--transition);
+          letter-spacing: 0.2px;
+        }
+
+        .hero__contact-link:hover {
+          color: var(--text-primary);
         }
 
         .hero__btn {

@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
+import FrameworksBanner from './components/FrameworksBanner';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -16,6 +17,7 @@ function PortfolioLayout() {
         <Hero />
         <About />
         <Projects />
+        <FrameworksBanner />
         <Skills />
         <Contact />
       </main>
